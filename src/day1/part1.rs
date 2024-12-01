@@ -14,7 +14,6 @@ pub fn solution(input: String) -> u32 {
         left_list.push(left);
         right_list.push(right);
     }
-    //let x = lines.map(|line| line.split_ascii_whitespace()).map(|split| split.map(|str| str.parse::<u32>().unwrap()));
 
     left_list.sort();
     right_list.sort();
