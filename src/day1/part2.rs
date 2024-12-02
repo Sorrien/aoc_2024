@@ -15,26 +15,28 @@ pub fn solution(input: String) -> u32 {
         right_list.push(right);
     }
 
-    left_list.sort();
     right_list.sort();
 
-    let mut sum = 0;
-
-    for left in left_list {
-        if let Some(position) = right_list.iter().position(|x| *x == left) {
-            let mut score = 1;
-            let mut position: usize = position + 1;
-            loop {
-                if right_list[position] == left {
-                    score += 1;
-                    position += 1;
-                } else {
-                    break;
+    let sum = left_list
+        .iter()
+        .map(|left| {
+            if let Some(position) = right_list.iter().position(|x| *x == *left) {
+                let mut score = 1;
+                let mut position: usize = position + 1;
+                loop {
+                    if right_list[position] == *left {
+                        score += 1;
+                        position += 1;
+                    } else {
+                        break;
+                    }
                 }
+                left * score
+            } else {
+                0
             }
-            sum += left * score;
-        }
-    }
+        })
+        .sum();
 
     sum
 }
