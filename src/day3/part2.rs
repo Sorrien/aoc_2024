@@ -30,27 +30,29 @@ pub fn solution(input: String) -> u32 {
 
         InstructionInfo::new(Instruction::Dont, start_index)
     });
-    let mut instructions = vec![];
-    instructions.extend(mul_instructions);
-    instructions.extend(do_instructions);
-    instructions.extend(dont_instructions);
-    instructions.sort_by(|a, b| a.index.cmp(&b.index));
 
     let mut is_mul_enabled = true;
-    let mut sum = 0;
-    for info in instructions {
-        match info.instruction {
-            Instruction::Do => is_mul_enabled = true,
-            Instruction::Dont => is_mul_enabled = false,
+    mul_instructions
+        .chain(do_instructions)
+        .chain(dont_instructions)
+        .filter_map(|info| match info.instruction {
+            Instruction::Do => {
+                is_mul_enabled = true;
+                None
+            }
+            Instruction::Dont => {
+                is_mul_enabled = false;
+                None
+            }
             Instruction::Mul(x, y) => {
                 if is_mul_enabled {
-                    sum += x * y
+                    Some(x * y)
+                } else {
+                    None
                 }
             }
-        }
-    }
-
-    sum
+        })
+        .sum()
 }
 
 pub enum Instruction {
