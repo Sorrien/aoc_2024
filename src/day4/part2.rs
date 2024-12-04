@@ -1,4 +1,4 @@
-pub const SEARCH_DIRS: [(isize, isize); 4] = [(-1, 1), (1, -1), (1, 1), (-1, -1)];
+const SEARCH_DIRS: [(isize, isize); 4] = [(-1, 1), (1, -1), (1, 1), (-1, -1)];
 
 pub fn solution(input: String) -> u32 {
     let map = input
@@ -28,14 +28,7 @@ pub fn solution(input: String) -> u32 {
                     })
                     .collect::<Vec<_>>();
                 if chars.len() == 4 {
-                    let first = chars[0];
-                    let second = chars[1];
-                    let third = chars[2];
-                    let fourth = chars[3];
-
-                    if ((first == 'M' && second == 'S') || (first == 'S' && second == 'M'))
-                        && ((third == 'M' && fourth == 'S') || (third == 'S' && fourth == 'M'))
-                    {
+                    if is_x_mas(&chars[0..=1]) && is_x_mas(&chars[2..=3]) {
                         count += 1;
                     }
                 }
@@ -50,5 +43,11 @@ fn is_coord_safe(x: isize, y: isize, width: usize, height: usize) -> bool {
 }
 
 fn apply_dir(x: isize, y: isize, dir_x: isize, dir_y: isize) -> (isize, isize) {
-    ((x as isize - dir_x), (y as isize - dir_y))
+    ((x - dir_x), (y - dir_y))
+}
+
+fn is_x_mas(chars: &[char]) -> bool {
+    let first = chars[0];
+    let second = chars[1];
+    (first == 'M' && second == 'S') || (first == 'S' && second == 'M')
 }

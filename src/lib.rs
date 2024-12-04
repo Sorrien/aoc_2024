@@ -11,7 +11,6 @@ mod tests {
     use crate::day2;
     use crate::day3;
     use crate::day4;
-    use crate::day4::part1::SEARCH_DIRS;
 
     #[test]
     fn day1_part1() {
