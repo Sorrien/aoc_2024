@@ -32,9 +32,15 @@ pub fn solution(input: String) -> u32 {
     });
 
     let mut is_mul_enabled = true;
-    mul_instructions
+    let mut instructions = mul_instructions
         .chain(do_instructions)
         .chain(dont_instructions)
+        .collect::<Vec<_>>();
+
+    instructions.sort_by(|a, b| a.index.cmp(&b.index));
+
+    instructions
+        .iter()
         .filter_map(|info| match info.instruction {
             Instruction::Do => {
                 is_mul_enabled = true;

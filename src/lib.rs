@@ -101,7 +101,7 @@ mod tests {
             fs::read_to_string("inputs/day3.txt").expect("failed to load input file");
 
         let result = day3::part2::solution(input_string);
-        assert_eq!(result, 48);
+        assert_eq!(result, 82045421);
     }
 
     #[test]
