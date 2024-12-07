@@ -4,6 +4,7 @@ pub mod day3;
 pub mod day4;
 pub mod day5;
 pub mod day6;
+pub mod day7;
 
 #[cfg(test)]
 mod tests {
@@ -15,6 +16,7 @@ mod tests {
     use crate::day4;
     use crate::day5;
     use crate::day6;
+    use crate::day7;
 
     #[test]
     fn day1_part1() {
@@ -227,5 +229,45 @@ mod tests {
         let result = day6::part2::solution_parallel(input_string);
         println!("{}", result);
         assert_eq!(result, 1796);
+    }
+
+    #[test]
+    fn day7_part1_ex() {
+        let input_string =
+            fs::read_to_string("inputs/day7_example.txt").expect("failed to load input file");
+
+        let result = day7::part1::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 3749);
+    }
+
+    #[test]
+    fn day7_part1() {
+        let input_string =
+            fs::read_to_string("inputs/day7.txt").expect("failed to load input file");
+
+        let result = day7::part1::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 3312271365652);
+    }
+
+    #[test]
+    fn day7_part2_ex() {
+        let input_string =
+            fs::read_to_string("inputs/day7_example.txt").expect("failed to load input file");
+
+        let result = day7::part2::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 11387);
+    }
+
+    #[test]
+    fn day7_part2() {
+        let input_string =
+            fs::read_to_string("inputs/day7.txt").expect("failed to load input file");
+
+        let result = day7::part2::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 509463489296712);
     }
 }
