@@ -24,6 +24,14 @@ impl Mul<isize> for UVec2 {
     }
 }
 
+impl Sub<IVec2> for UVec2 {
+    type Output = IVec2;
+
+    fn sub(self, rhs: Self::Output) -> Self::Output {
+        Self::Output::new(self.x as isize - rhs.x, self.y as isize - rhs.y)
+    }
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Ord, Eq)]
 pub struct IVec2 {
     pub x: isize,

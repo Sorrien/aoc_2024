@@ -1,3 +1,5 @@
+use crate::common::math::{IVec2, UVec2};
+
 const SEARCH_DIRS: [(isize, isize); 8] = [
     (-1, 0),
     (-1, 1),
@@ -25,22 +27,19 @@ pub fn solution(input: String) -> u32 {
     for x in 0..width {
         for y in 0..height {
             let cur_char = map[x][y];
+            let cur_pos = UVec2::new(x, y);
 
             if cur_char == search_string[0] {
                 for (dir_x, dir_y) in SEARCH_DIRS {
+                    let dir = IVec2::new(dir_x, dir_y);
                     let mut is_match = true;
                     for (search_index, search_char) in
                         search_string[1..search_string_len].iter().enumerate().rev()
                     {
                         let search_index = (search_index + 1) as isize;
-                        let (x, y) = apply_dir(
-                            x as isize,
-                            y as isize,
-                            dir_x * search_index as isize,
-                            dir_y * search_index as isize,
-                        );
-                        if !is_coord_safe(x, y, width, height)
-                            || map[x as usize][y as usize] != *search_char
+                        let new_pos = cur_pos + (dir * search_index);
+                        if !new_pos.is_coord_safe(width, height)
+                            || map[new_pos.x as usize][new_pos.y as usize] != *search_char
                         {
                             is_match = false;
                             break;
@@ -54,12 +53,4 @@ pub fn solution(input: String) -> u32 {
         }
     }
     count
-}
-
-fn is_coord_safe(x: isize, y: isize, width: usize, height: usize) -> bool {
-    x >= 0 && x < width as isize && y >= 0 && y < height as isize
-}
-
-fn apply_dir(x: isize, y: isize, dir_x: isize, dir_y: isize) -> (isize, isize) {
-    ((x + dir_x), (y + dir_y))
 }
