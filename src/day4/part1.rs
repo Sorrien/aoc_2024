@@ -1,15 +1,7 @@
-use crate::common::math::{IVec2, UVec2};
-
-const SEARCH_DIRS: [(isize, isize); 8] = [
-    (-1, 0),
-    (-1, 1),
-    (0, 1),
-    (1, 1),
-    (1, 0),
-    (1, -1),
-    (0, -1),
-    (-1, -1),
-];
+use crate::common::{
+    math::{IVec2, UVec2},
+    CARDINAL_INTERCARDINAL_DIRECTIONS,
+};
 
 pub fn solution(input: String) -> u32 {
     let map = input
@@ -30,7 +22,7 @@ pub fn solution(input: String) -> u32 {
             let cur_pos = UVec2::new(x, y);
 
             if cur_char == search_string[0] {
-                for (dir_x, dir_y) in SEARCH_DIRS {
+                for (dir_x, dir_y) in CARDINAL_INTERCARDINAL_DIRECTIONS {
                     let dir = IVec2::new(dir_x, dir_y);
                     let mut is_match = true;
                     for (search_index, search_char) in

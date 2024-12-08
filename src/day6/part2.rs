@@ -1,7 +1,6 @@
-use crate::common::math::{IVec2, UVec2};
+use crate::common::{math::UVec2, CardinalDirection};
 use rayon::prelude::*;
 
-pub const DIRECTIONS: [(isize, isize); 4] = [(-1, 0), (1, 0), (0, 1), (0, -1)];
 pub const OBSTRUCTION: char = '#';
 pub const MAX_STEPS: usize = 6000; //100000;
 
@@ -40,7 +39,7 @@ pub fn solution(input: String) -> u32 {
             let mut current_pos = UVec2::new(start_x, start_y);
 
             let mut is_in_bounds = true;
-            let mut dir = Direction::North;
+            let mut dir = CardinalDirection::North;
 
             while is_in_bounds && step_counter < MAX_STEPS {
                 let dir_vec = dir.get_x_y();
@@ -110,7 +109,7 @@ pub fn solution_parallel(input: String) -> u32 {
                         let mut current_pos = UVec2::new(start_x, start_y);
 
                         let mut is_in_bounds = true;
-                        let mut dir = Direction::North;
+                        let mut dir = CardinalDirection::North;
 
                         while is_in_bounds && step_counter < MAX_STEPS {
                             let dir_vec = dir.get_x_y();
@@ -147,27 +146,4 @@ pub fn solution_parallel(input: String) -> u32 {
                 .count() as u32
         })
         .sum()
-}
-
-#[derive(Clone, Copy, Debug)]
-pub enum Direction {
-    North = 0,
-    South = 1,
-    East = 2,
-    West = 3,
-}
-
-impl Direction {
-    pub fn get_x_y(&self) -> IVec2 {
-        let (x, y) = DIRECTIONS[*self as usize];
-        IVec2::new(x, y)
-    }
-    pub fn rot_right_90(&self) -> Self {
-        match self {
-            Direction::North => Direction::East,
-            Direction::South => Direction::West,
-            Direction::East => Direction::South,
-            Direction::West => Direction::North,
-        }
-    }
 }

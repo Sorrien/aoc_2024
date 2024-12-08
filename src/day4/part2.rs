@@ -1,6 +1,7 @@
-use crate::common::math::{IVec2, UVec2};
-
-const SEARCH_DIRS: [(isize, isize); 4] = [(-1, 1), (1, -1), (1, 1), (-1, -1)];
+use crate::common::{
+    math::{IVec2, UVec2},
+    INTERCARDINAL_DIRECTIONS,
+};
 
 pub fn solution(input: String) -> u32 {
     let map = input
@@ -18,7 +19,7 @@ pub fn solution(input: String) -> u32 {
             let cur_pos = UVec2::new(x, y);
 
             if cur_char == 'A' {
-                let chars = SEARCH_DIRS
+                let chars = INTERCARDINAL_DIRECTIONS
                     .iter()
                     .filter_map(|(dir_x, dir_y)| {
                         let dir = IVec2::new(*dir_x, *dir_y);

@@ -1,6 +1,4 @@
-use crate::common::math::{IVec2, UVec2};
-
-pub const DIRECTIONS: [(isize, isize); 4] = [(-1, 0), (1, 0), (0, 1), (0, -1)];
+use crate::common::{math::UVec2, CardinalDirection};
 
 pub fn solution(input: String) -> u32 {
     let map = input
@@ -27,7 +25,7 @@ pub fn solution(input: String) -> u32 {
     let mut current_pos = UVec2::new(start_x, start_y);
 
     let mut is_in_bounds = true;
-    let mut dir = Direction::North;
+    let mut dir = CardinalDirection::North;
     let mut visited_positions = vec![current_pos];
 
     while is_in_bounds {
@@ -55,27 +53,4 @@ pub fn solution(input: String) -> u32 {
     visited_positions.dedup();
 
     visited_positions.len() as u32
-}
-
-#[derive(Clone, Copy, Debug)]
-pub enum Direction {
-    North = 0,
-    South = 1,
-    East = 2,
-    West = 3,
-}
-
-impl Direction {
-    pub fn get_x_y(&self) -> IVec2 {
-        let (x, y) = DIRECTIONS[*self as usize];
-        IVec2::new(x, y)
-    }
-    pub fn rot_right_90(&self) -> Self {
-        match self {
-            Direction::North => Direction::East,
-            Direction::South => Direction::West,
-            Direction::East => Direction::South,
-            Direction::West => Direction::North,
-        }
-    }
 }
