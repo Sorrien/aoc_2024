@@ -26,16 +26,6 @@ pub fn solution(input: String) -> u64 {
                             if next_char == cur_char {
                                 let distance = next_pos.as_i_position() - cur_pos.as_i_position();
 
-                                let antinode_1_pos = cur_pos + (distance * -1);
-                                let antinode_2_pos = next_pos + distance;
-
-                                if antinode_1_pos.is_coord_safe(width, height) {
-                                    antinode_positions.push(antinode_1_pos);
-                                }
-                                if antinode_2_pos.is_coord_safe(width, height) {
-                                    antinode_positions.push(antinode_2_pos);
-                                }
-
                                 let mut index = 0;
                                 let mut is_in_boundary = true;
 
