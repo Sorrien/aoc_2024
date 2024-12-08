@@ -25,9 +25,6 @@ pub fn solution(input: String) -> u64 {
 
                             if next_char == cur_char {
                                 let distance = next_pos.as_i_position() - cur_pos.as_i_position();
-                                //let direction = distance.normalize();
-
-                                //println!("distance: {:?} direction: {:?}", distance, direction);
 
                                 let antinode_1_pos = cur_pos + (distance * -1);
                                 let antinode_2_pos = next_pos + distance;
@@ -75,11 +72,5 @@ pub fn solution(input: String) -> u64 {
     antinode_positions.sort();
     antinode_positions.dedup();
 
-    println!("{:?}", antinode_positions);
-
     antinode_positions.len() as u64
 }
-
-//4,7 is wrong
-//6,8 is wrong
-//8,9 is wrong
