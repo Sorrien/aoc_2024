@@ -18,7 +18,7 @@ pub fn solution(input: String) -> u64 {
             let operator_count = values.len() - 1;
             let mut is_pass = false;
 
-            let operator_combos = &all_operator_combos[operator_count];
+            let operator_combos = &all_operator_combos[operator_count - 1];
 
             for operators in operator_combos {
                 let mut sum = values[0];

@@ -8,21 +8,17 @@ pub fn solution(input: String) -> u64 {
         .filter_map(|line| {
             let mut first_split = line.split(":");
             let test_val = first_split.next().unwrap().parse::<u64>().unwrap();
-
-            let str_values = first_split
+            let values = first_split
                 .next()
                 .unwrap()
                 .split_ascii_whitespace()
-                .collect::<Vec<_>>();
-            let values = str_values
-                .iter()
                 .map(|str| str.parse::<u64>().unwrap())
                 .collect::<Vec<_>>();
 
             let operator_count = values.len() - 1;
             let mut is_pass = false;
 
-            let operator_combos = &all_operator_combos[operator_count];
+            let operator_combos = &all_operator_combos[operator_count - 1];
 
             for operators in operator_combos {
                 let mut sum = values[0];
