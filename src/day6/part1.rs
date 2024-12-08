@@ -1,4 +1,4 @@
-use std::ops::Add;
+use crate::common::math::{IVec2, UVec2};
 
 pub const DIRECTIONS: [(isize, isize); 4] = [(-1, 0), (1, 0), (0, 1), (0, -1)];
 
@@ -78,52 +78,4 @@ impl Direction {
             Direction::West => Direction::North,
         }
     }
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Ord, Eq)]
-pub struct UVec2 {
-    pub x: usize,
-    pub y: usize,
-}
-
-impl UVec2 {
-    pub fn new(x: usize, y: usize) -> Self {
-        Self { x, y }
-    }
-
-    pub fn as_i_position(&self) -> IVec2 {
-        IVec2::new(self.x as isize, self.y as isize)
-    }
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Ord, Eq)]
-pub struct IVec2 {
-    pub x: isize,
-    pub y: isize,
-}
-
-impl IVec2 {
-    pub fn new(x: isize, y: isize) -> Self {
-        Self { x, y }
-    }
-
-    pub fn as_u_position(&self) -> UVec2 {
-        UVec2::new(self.x as usize, self.y as usize)
-    }
-}
-
-impl Add<IVec2> for UVec2 {
-    fn add(self, rhs: IVec2) -> IVec2 {
-        IVec2::new(self.x as isize + rhs.x, self.y as isize + rhs.y)
-    }
-
-    type Output = IVec2;
-}
-
-impl Add<UVec2> for IVec2 {
-    fn add(self, rhs: UVec2) -> IVec2 {
-        IVec2::new(self.x + rhs.x as isize, self.y + rhs.y as isize)
-    }
-
-    type Output = IVec2;
 }
