@@ -304,6 +304,16 @@ mod tests {
         assert_eq!(result, 34);
     }
 
+    /*     #[test]
+    fn day8_part2_ex_2() {
+        let input_string =
+            fs::read_to_string("inputs/day8_example_2.txt").expect("failed to load input file");
+
+        let result = day8::part2::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 9);
+    } */
+
     #[test]
     fn day8_part2() {
         let input_string =

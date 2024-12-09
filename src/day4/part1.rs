@@ -1,25 +1,21 @@
 use crate::common::{
+    map::CharMap,
     math::{IVec2, UVec2},
     CARDINAL_INTERCARDINAL_DIRECTIONS,
 };
 
 pub fn solution(input: String) -> u32 {
-    let map = input
-        .lines()
-        .map(|line| line.chars().collect::<Vec<_>>())
-        .collect::<Vec<_>>();
+    let map = CharMap::new(&input);
 
-    let width = map.len();
-    let height = map[0].len();
     let mut count = 0;
     let word = "XMAS";
     let search_string = word.chars().collect::<Vec<_>>();
     let search_string_len = search_string.len();
 
-    for x in 0..width {
-        for y in 0..height {
-            let cur_char = map[x][y];
+    for x in 0..map.width {
+        for y in 0..map.height {
             let cur_pos = UVec2::new(x, y);
+            let cur_char = map.get(cur_pos);
 
             if cur_char == search_string[0] {
                 for (dir_x, dir_y) in CARDINAL_INTERCARDINAL_DIRECTIONS {
@@ -30,8 +26,8 @@ pub fn solution(input: String) -> u32 {
                     {
                         let search_index = (search_index + 1) as isize;
                         let new_pos = cur_pos + (dir * search_index);
-                        if !new_pos.is_coord_safe(width, height)
-                            || map[new_pos.x as usize][new_pos.y as usize] != *search_char
+                        if !new_pos.is_coord_safe(map.width, map.height)
+                            || map.get_ivec_unchecked(new_pos) != *search_char
                         {
                             is_match = false;
                             break;
