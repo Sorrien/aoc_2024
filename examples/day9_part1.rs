@@ -4,7 +4,7 @@ use common::*;
 use std::fs;
 
 fn main() {
-    run_solution(false, || {
+    run_solution(true, || {
         let input_string =
             fs::read_to_string("inputs/day9.txt").expect("failed to load input file");
 
