@@ -3,7 +3,7 @@ use std::time::Instant;
 pub fn run_solution<F: Fn() -> String>(measure: bool, f: F) {
     if measure {
         let mut timings = vec![];
-        for _ in 0..1000 {
+        for _ in 0..10000 {
             let instant = Instant::now();
             f();
 
