@@ -1,16 +1,7 @@
-use crate::common::{
-    map::IntMap,
-    math::{IVec2, UVec2},
-    CARDINAL_DIRECTIONS,
-};
+use crate::common::{map::IntMap, math::UVec2, CARDINAL_DIRECTIONS};
 
 pub fn solution(input: String) -> u64 {
     let map = IntMap::new(&input);
-
-    let cardinal_directions = CARDINAL_DIRECTIONS
-        .iter()
-        .map(|(x, y)| IVec2::new(*x, *y))
-        .collect::<Vec<_>>();
 
     (0..map.width)
         .map(|x| {
@@ -28,8 +19,8 @@ pub fn solution(input: String) -> u64 {
                             let mut next_positions = vec![];
                             for position in &current_positions {
                                 let cur_val = map.get(*position);
-                                for direction in &cardinal_directions {
-                                    let next_pos = *position + *direction;
+                                for direction in CARDINAL_DIRECTIONS {
+                                    let next_pos = *position + direction;
 
                                     if let Some(next_val) = map.get_ivec_checked(next_pos) {
                                         if cur_val + 1 == next_val {

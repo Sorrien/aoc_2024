@@ -1,6 +1,6 @@
 use crate::common::{
     cardinal_rot_right_90,
-    math::{IVec2, UVec2},
+    math::UVec2,
     CARDINAL_DIRECTIONS,
 };
 
@@ -33,8 +33,7 @@ pub fn solution(input: String) -> u32 {
     let mut visited_positions = vec![current_pos];
 
     while is_in_bounds {
-        let (dir_x, dir_y) = CARDINAL_DIRECTIONS[dir_index];
-        let dir_vec = IVec2::new(dir_x, dir_y);
+        let dir_vec = CARDINAL_DIRECTIONS[dir_index];
         let next_position = current_pos + dir_vec;
 
         if next_position.x < 0

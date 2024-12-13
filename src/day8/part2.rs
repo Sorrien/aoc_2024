@@ -1,4 +1,4 @@
-use crate::common::math::UVec2;
+use crate::common::math::{IVec2, UVec2};
 
 pub fn solution(input: String) -> u64 {
     let map = input
@@ -30,7 +30,7 @@ pub fn solution(input: String) -> u64 {
                                 let mut is_in_boundary = true;
 
                                 while is_in_boundary {
-                                    let next_in_line_pos = cur_pos + ((distance * -1) * index);
+                                    let next_in_line_pos: IVec2 = cur_pos + ((distance * -1) * index);
                                     if next_in_line_pos.is_coord_safe(width, height) {
                                         antinode_positions.push(next_in_line_pos);
                                         index += 1;
@@ -43,7 +43,7 @@ pub fn solution(input: String) -> u64 {
                                 let mut is_in_boundary = true;
 
                                 while is_in_boundary {
-                                    let next_in_line_pos = next_pos + (distance * index);
+                                    let next_in_line_pos: IVec2 = next_pos + (distance * index);
                                     if next_in_line_pos.is_coord_safe(width, height) {
                                         antinode_positions.push(next_in_line_pos);
                                         index += 1;

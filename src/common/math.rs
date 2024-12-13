@@ -1,6 +1,6 @@
 use std::ops::{Add, Div, Mul, Sub};
 
-#[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Ord, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Ord, Eq, Hash)]
 pub struct UVec2 {
     pub x: usize,
     pub y: usize,
@@ -13,6 +13,22 @@ impl UVec2 {
 
     pub fn as_i_position(&self) -> IVec2 {
         IVec2::new(self.x as isize, self.y as isize)
+    }
+}
+
+impl Add<UVec2> for UVec2 {
+    type Output = Self;
+
+    fn add(self, rhs: UVec2) -> Self::Output {
+        UVec2::new(self.x + rhs.x, self.y + rhs.y)
+    }
+}
+
+impl Mul<usize> for UVec2 {
+    type Output = UVec2;
+
+    fn mul(self, rhs: usize) -> Self::Output {
+        UVec2::new(self.x * rhs, self.y * rhs)
     }
 }
 
@@ -32,7 +48,7 @@ impl Sub<IVec2> for UVec2 {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Ord, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Ord, Eq, Hash)]
 pub struct IVec2 {
     pub x: isize,
     pub y: isize,
@@ -85,6 +101,14 @@ impl Sub<IVec2> for IVec2 {
     }
 }
 
+impl Add<IVec2> for IVec2 {
+    type Output = Self;
+
+    fn add(self, rhs: IVec2) -> Self::Output {
+        Self::new(self.x + rhs.x, self.y + rhs.y)
+    }
+}
+
 impl Mul<IVec2> for IVec2 {
     type Output = Self;
 
@@ -134,3 +158,36 @@ mod math_tests {
         assert_eq!(IVec2::new(6, 8).length(), 10)
     }
 }
+
+/* pub fn get_intersection(p0: IVec2, p1: IVec2, p2: IVec2, p3: IVec2) -> Option<IVec2> {
+    let s1_x = p1.x - p0.x;
+    let s2_x = p3.x - p2.x;
+
+    let s1_y = p1.y - p0.y;
+    let s2_y = p3.y - p2.y;
+
+    let s = (-s1_y * (p0.x - p2.x) + s1_x * (p0.y - p2.y)) / (-s2_x * s1_y + s1_x * s2_y);
+    let t = (s2_x * (p0.y - p2.y) - s2_y * (p0.x - p2.x)) / (-s2_x * s1_y + s1_x * s2_y);
+
+    if s >= 0 && s <= 1 && t >= 0 && t <= 1 {
+        let x = p0.x + (t * s1_x);
+        let y = p0.y + (t * s1_y);
+        Some(IVec2::new(x, y))
+    } else {
+        None
+    }
+}
+
+fn solve_lin_equation_float(a: f64, b: f64, c: f64, d: f64, u: f64, v: f64) -> (f64, f64) {
+    if a.abs() > c.abs() {
+    let f = u * c / a;
+    let g = b * c / a;
+    let y = (v - f) / (d - g);
+    return ((f - g * y) / c, y);
+         } else {
+        let f = v * a / c;
+        let g = d * a / c;
+        let x = (u - f) / (b - g);
+        return (x, (f - g * x) / a);
+    }
+}*/

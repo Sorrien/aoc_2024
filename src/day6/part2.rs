@@ -1,8 +1,4 @@
-use crate::common::{
-    cardinal_rot_right_90,
-    math::{IVec2, UVec2},
-    CARDINAL_DIRECTIONS,
-};
+use crate::common::{cardinal_rot_right_90, math::UVec2, CARDINAL_DIRECTIONS};
 use rayon::prelude::*;
 
 pub const OBSTRUCTION: char = '#';
@@ -46,8 +42,7 @@ pub fn solution(input: String) -> u32 {
             let mut dir_index = 0;
 
             while is_in_bounds && step_counter < MAX_STEPS {
-                let (dir_x, dir_y) = CARDINAL_DIRECTIONS[dir_index];
-                let dir_vec = IVec2::new(dir_x, dir_y);
+                let dir_vec = CARDINAL_DIRECTIONS[dir_index];
                 let next_position = current_pos + dir_vec;
 
                 if next_position.x < 0
@@ -117,8 +112,7 @@ pub fn solution_parallel(input: String) -> u32 {
                         let mut dir_index = 0;
 
                         while is_in_bounds && step_counter < MAX_STEPS {
-                            let (dir_x, dir_y) = CARDINAL_DIRECTIONS[dir_index];
-                            let dir_vec = IVec2::new(dir_x, dir_y);
+                            let dir_vec = CARDINAL_DIRECTIONS[dir_index];
                             let next_position = current_pos + dir_vec;
 
                             if next_position.x < 0

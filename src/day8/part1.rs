@@ -1,4 +1,4 @@
-use crate::common::math::UVec2;
+use crate::common::math::{IVec2, UVec2};
 
 pub fn solution(input: String) -> u64 {
     let map = input
@@ -26,7 +26,7 @@ pub fn solution(input: String) -> u64 {
                             if next_char == cur_char {
                                 let distance = next_pos.as_i_position() - cur_pos.as_i_position();
 
-                                let antinode_1_pos = cur_pos + (distance * -1);
+                                let antinode_1_pos: IVec2 = cur_pos + (distance * -1);
                                 let antinode_2_pos = next_pos + distance;
 
                                 if antinode_1_pos.is_coord_safe(width, height) {
