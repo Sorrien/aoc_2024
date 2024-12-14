@@ -191,3 +191,8 @@ fn solve_lin_equation_float(a: f64, b: f64, c: f64, d: f64, u: f64, v: f64) -> (
         return (x, (f - g * x) / a);
     }
 }*/
+
+#[inline]
+pub fn mod_floor(a: isize, n: isize) -> isize {
+    ((a % n) + n) % n
+}

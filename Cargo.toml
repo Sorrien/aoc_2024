@@ -6,4 +6,3 @@ edition = "2021"
 [dependencies]
 rayon = "1.10.0"
 regex = "1.11.1"
-crossbeam = "0.8.4"

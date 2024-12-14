@@ -1,6 +1,8 @@
 use std::{env, fs, time::Instant};
 
-use aoc_2024::{day1, day10, day11, day12, day13, day2, day3, day4, day5, day6, day7, day8, day9};
+use aoc_2024::{
+    day1, day10, day11, day12, day13, day14, day2, day3, day4, day5, day6, day7, day8, day9,
+};
 
 fn main() {
     let args = env::args().collect::<Vec<_>>();
@@ -114,6 +116,11 @@ pub fn run_solution(input: &String, day: u8, part: u8) -> String {
         13 => match part {
             1 => day13::part1::solution(input).to_string(),
             2 => day13::part2::solution(input).to_string(),
+            _ => panic!("Part not recognized"),
+        },
+        14 => match part {
+            1 => day14::part1::solution(input, 103, 101).to_string(),
+            2 => day14::part2::solution(input, 103, 101).to_string(),
             _ => panic!("Part not recognized"),
         },
         _ => panic!("Haven't done that yet I guess"),
