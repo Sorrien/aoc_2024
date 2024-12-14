@@ -17,11 +17,10 @@ pub fn solution(input: String, width: usize, height: usize) -> u64 {
                 .flatten()
                 .map(|str| str.parse::<isize>().unwrap());
 
-            //for now this is intentionally backwards to match how directions were written for other problems
-            let pos_y = values.next().unwrap() as usize;
             let pos_x = values.next().unwrap() as usize;
-            let vel_y = values.next().unwrap();
+            let pos_y = values.next().unwrap() as usize;
             let vel_x = values.next().unwrap();
+            let vel_y = values.next().unwrap();
 
             Robot {
                 pos: UVec2::new(pos_x, pos_y),
@@ -38,7 +37,7 @@ pub fn solution(input: String, width: usize, height: usize) -> u64 {
             let distance_moved: IVec2 = robot.vel * time;
             let destination = robot.pos + distance_moved;
 
-            if destination.is_coord_safe(width, height) {
+            if destination.is_coord_safe(height, width) {
                 final_robot_positions.insert(destination.as_u_position());
             } else {
                 let wrap_x = mod_floor(destination.x, width as isize);
@@ -50,14 +49,14 @@ pub fn solution(input: String, width: usize, height: usize) -> u64 {
 
         let mut is_tree_border_detected = false;
         //christmas tree is 32x32 including the borders
-        'x_loop: for x in 0..width - 31 {
+        'y_loop: for y in 0..height - 31 {
             let mut row_length = 0;
-            for y in 0..height - 27 {
+            for x in 0..width - 27 {
                 if final_robot_positions.contains(&UVec2::new(x, y)) {
                     row_length += 1;
                     if row_length > 5 {
                         is_tree_border_detected = true;
-                        break 'x_loop;
+                        break 'y_loop;
                     }
                 } else {
                     row_length = 0;
@@ -68,8 +67,8 @@ pub fn solution(input: String, width: usize, height: usize) -> u64 {
         if is_tree_border_detected {
             /*             let mut map_string = String::new();
 
+            for y in 0..height {
             for x in 0..width {
-                for y in 0..height {
                     let mut robot_count = 0;
                     for pos in final_robot_positions.iter() {
                         if pos.x == x && pos.y == y {

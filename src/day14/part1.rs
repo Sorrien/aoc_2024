@@ -17,11 +17,10 @@ pub fn solution(input: String, width: usize, height: usize) -> u64 {
                 .flatten()
                 .map(|str| str.parse::<isize>().unwrap());
 
-            //for now this is intentionally backwards to match how directions were written for other problems
-            let pos_y = values.next().unwrap() as usize;
             let pos_x = values.next().unwrap() as usize;
-            let vel_y = values.next().unwrap();
+            let pos_y = values.next().unwrap() as usize;
             let vel_x = values.next().unwrap();
+            let vel_y = values.next().unwrap();
 
             Robot {
                 pos: UVec2::new(pos_x, pos_y),

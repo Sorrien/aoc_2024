@@ -521,7 +521,7 @@ mod tests {
         let input_string =
             fs::read_to_string("inputs/day14_example.txt").expect("failed to load input file");
 
-        let result = day14::part1::solution(input_string, 7, 11);
+        let result = day14::part1::solution(input_string, 11, 7);
         println!("{}", result);
         assert_eq!(result, 12);
     }
@@ -531,7 +531,7 @@ mod tests {
         let input_string =
             fs::read_to_string("inputs/day14.txt").expect("failed to load input file");
 
-        let result = day14::part1::solution(input_string, 103, 101);
+        let result = day14::part1::solution(input_string, 101, 103);
         println!("{}", result);
         assert_eq!(result, 225648864);
     }
@@ -541,7 +541,7 @@ mod tests {
         let input_string =
             fs::read_to_string("inputs/day14.txt").expect("failed to load input file");
 
-        let result = day14::part2::solution(input_string, 103, 101);
+        let result = day14::part2::solution(input_string, 101, 103);
         println!("{}", result);
         assert_eq!(result, 7847);
     }

@@ -119,8 +119,8 @@ pub fn run_solution(input: &String, day: u8, part: u8) -> String {
             _ => panic!("Part not recognized"),
         },
         14 => match part {
-            1 => day14::part1::solution(input, 103, 101).to_string(),
-            2 => day14::part2::solution(input, 103, 101).to_string(),
+            1 => day14::part1::solution(input, 101, 103).to_string(),
+            2 => day14::part2::solution(input, 101, 103).to_string(),
             _ => panic!("Part not recognized"),
         },
         _ => panic!("Haven't done that yet I guess"),
