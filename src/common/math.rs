@@ -14,6 +14,7 @@ impl UVec2 {
     pub fn as_i_position(&self) -> IVec2 {
         IVec2::new(self.x as isize, self.y as isize)
     }
+    pub const ZERO: UVec2 = UVec2 { x: 0, y: 0 };
 }
 
 impl Add<UVec2> for UVec2 {

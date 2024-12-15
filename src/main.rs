@@ -1,7 +1,7 @@
 use std::{env, fs, time::Instant};
 
 use aoc_2024::{
-    day1, day10, day11, day12, day13, day14, day2, day3, day4, day5, day6, day7, day8, day9,
+    day1, day10, day11, day12, day13, day14, day15, day2, day3, day4, day5, day6, day7, day8, day9
 };
 
 fn main() {
@@ -121,6 +121,11 @@ pub fn run_solution(input: &String, day: u8, part: u8) -> String {
         14 => match part {
             1 => day14::part1::solution(input, 101, 103).to_string(),
             2 => day14::part2::solution(input, 101, 103).to_string(),
+            _ => panic!("Part not recognized"),
+        },
+        15 => match part {
+            1 => day15::part1::solution(input).to_string(),
+            2 => day15::part2::solution(input).to_string(),
             _ => panic!("Part not recognized"),
         },
         _ => panic!("Haven't done that yet I guess"),

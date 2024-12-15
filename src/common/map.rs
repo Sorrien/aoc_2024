@@ -1,5 +1,6 @@
 use super::math::{IVec2, UVec2};
 
+#[derive(Clone)]
 pub struct CharMap {
     pub data: Vec<Vec<char>>,
     pub width: usize,
@@ -37,6 +38,17 @@ impl CharMap {
 
     pub fn get_ivec_unchecked(&self, vec: IVec2) -> char {
         self.data[vec.x as usize][vec.y as usize]
+    }
+
+    pub fn set(&mut self, vec: UVec2, c: char) {
+        self.data[vec.x][vec.y] = c;
+    }
+
+    pub fn swap(&mut self, pos1: UVec2, pos2: UVec2) {
+        let a = self.get(pos1);
+        let b = self.get(pos2);
+        self.set(pos1, b);
+        self.set(pos2, a);
     }
 }
 
