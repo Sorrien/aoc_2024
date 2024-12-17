@@ -117,10 +117,6 @@ pub fn solution(input: String) -> u64 {
             }
         }
 
-        let steps = steps + 1;
-        if steps > 500 {
-            continue;
-        }
         let pos = pos;
         let score: usize = score;
         let cur_direction = direction;
