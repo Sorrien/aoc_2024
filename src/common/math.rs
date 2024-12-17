@@ -14,6 +14,11 @@ impl UVec2 {
     pub fn as_i_position(&self) -> IVec2 {
         IVec2::new(self.x as isize, self.y as isize)
     }
+
+    pub fn length(&self) -> usize {
+        f64::sqrt((self.x.pow(2) + self.y.pow(2)) as f64) as usize
+    }
+
     pub const ZERO: UVec2 = UVec2 { x: 0, y: 0 };
 }
 
@@ -46,6 +51,14 @@ impl Sub<IVec2> for UVec2 {
 
     fn sub(self, rhs: Self::Output) -> Self::Output {
         Self::Output::new(self.x as isize - rhs.x, self.y as isize - rhs.y)
+    }
+}
+
+impl Sub<UVec2> for UVec2 {
+    type Output = Self;
+
+    fn sub(self, rhs: Self::Output) -> Self::Output {
+        Self::Output::new(self.x - rhs.x, self.y - rhs.y)
     }
 }
 

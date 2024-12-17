@@ -6,6 +6,7 @@ pub mod day12;
 pub mod day13;
 pub mod day14;
 pub mod day15;
+pub mod day16;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -26,6 +27,7 @@ mod tests {
     use crate::day13;
     use crate::day14;
     use crate::day15;
+    use crate::day16;
     use crate::day2;
     use crate::day3;
     use crate::day4;
@@ -586,5 +588,65 @@ mod tests {
         let result = day15::part2::solution(input_string);
         println!("{}", result);
         assert_eq!(result, 1521635);
+    }
+
+    #[test]
+    fn day16_part1_ex() {
+        let input_string =
+            fs::read_to_string("inputs/day16_example.txt").expect("failed to load input file");
+
+        let result = day16::part1::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 7036);
+    }
+
+    #[test]
+    fn day16_part1_ex_2() {
+        let input_string =
+            fs::read_to_string("inputs/day16_example_2.txt").expect("failed to load input file");
+
+        let result = day16::part1::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 11048);
+    }
+
+    #[test]
+    fn day16_part1() {
+        let input_string =
+            fs::read_to_string("inputs/day16.txt").expect("failed to load input file");
+
+        let result = day16::part1::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 72428);
+    }
+
+    #[test]
+    fn day16_part2_ex() {
+        let input_string =
+            fs::read_to_string("inputs/day16_example.txt").expect("failed to load input file");
+
+        let result = day16::part2::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 45);
+    }
+
+    #[test]
+    fn day16_part2_ex_2() {
+        let input_string =
+            fs::read_to_string("inputs/day16_example_2.txt").expect("failed to load input file");
+
+        let result = day16::part2::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 64);
+    }
+
+    #[test]
+    fn day16_part2() {
+        let input_string =
+            fs::read_to_string("inputs/day16.txt").expect("failed to load input file");
+
+        let result = day16::part2::solution(input_string);
+        println!("{}", result);
+        assert_eq!(result, 456);
     }
 }

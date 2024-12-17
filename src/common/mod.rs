@@ -1,4 +1,4 @@
-use math::IVec2;
+use math::{mod_floor, IVec2};
 
 pub mod map;
 pub mod math;
@@ -46,11 +46,31 @@ impl CardinalDirection {
     pub fn get_direction(&self) -> IVec2 {
         CARDINAL_DIRECTIONS[*self as usize]
     }
+
+    pub fn get_opposite(&self) -> Self {
+        ENUM_CARDINAL_DIRECTIONS[cardinal_rot_90_n(*self as usize, 2)]
+    }
 }
 
 #[inline]
 pub fn cardinal_rot_right_90(direction_index: usize) -> usize {
     (direction_index + 1) % CARDINAL_DIRECTIONS.len()
+}
+
+#[inline]
+pub fn cardinal_rot_left_90(direction_index: usize) -> usize {
+    mod_floor(
+        direction_index as isize - 1,
+        CARDINAL_DIRECTIONS.len() as isize,
+    ) as usize
+}
+
+#[inline]
+pub fn cardinal_rot_90_n(direction_index: usize, n: isize) -> usize {
+    mod_floor(
+        direction_index as isize + n,
+        CARDINAL_DIRECTIONS.len() as isize,
+    ) as usize
 }
 
 pub const ALPHABET_UPPER: [char; 26] = [
